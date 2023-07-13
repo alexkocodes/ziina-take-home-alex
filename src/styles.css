@@ -1,0 +1,64 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.draggable {
+  z-index: 2;
+  position: fixed;
+  background-color: blue;
+  width: 80px;
+  height: 80px;
+  cursor: move;
+}
+
+.red-box {
+  z-index: 1;
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  background-color: red;
+  display: flex;
+}
+
+.label {
+  margin-top: 430px;
+  display: flex;
+}
+
+.big-container {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 200px;
+  left: 800px;
+}
+
+.button {
+  background-color: #4CAF50;
+  /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.button1 {
+  background-color: white;
+  color: black;
+  border: 2px solid #4CAF50;
+}
+
+.button1:hover {
+  background-color: #4CAF50;
+  color: white;
+}
