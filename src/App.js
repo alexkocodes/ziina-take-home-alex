@@ -19,17 +19,7 @@ export default function App() {
       ref: draggableRef,
       id: i,
       callBack: function (e) {
-        // set the overlapping area of the draggable element, it cannot exceed 6400
-        if (e > 6400) {
-          overlappingArea[i] = 6400;
-        } else {
-          overlappingArea[i] = e;
-        }
-        // calculate the total overlapping area of all draggable elements
-        let totalOverlappingArea = 0;
-        for (let j = 0; j < 5; j++) {
-          totalOverlappingArea += overlappingArea[j];
-        }
+        let totalOverlappingArea = e;
         // calculate the total visible area of the red box, but only when the total overlapping area has changed
         setVisibleArea(calculateVisibleArea() - totalOverlappingArea);
       },
