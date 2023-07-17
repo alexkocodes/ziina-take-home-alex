@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./styles.css";
 import { useDrag } from "./useDrag";
-import styled from "styled-components";
 
 export default function App() {
 
@@ -35,7 +34,7 @@ export default function App() {
         setVisibleArea(calculateVisibleArea() - totalOverlappingArea);
       },
     });
-    positions.push({ position, handleMouseDown, id: i, ref: draggableRef });
+    positions.push({ position, handleMouseDown, id: i, ref: draggableRef }); // push the position and handleMouseDown function of each draggable element into the array
   }
 
   // function to calculate the total visible area of the red box
@@ -66,9 +65,10 @@ export default function App() {
           className="draggable"
           onMouseDown={pos.handleMouseDown}
           ref={pos.ref}
+          id={pos.id}
           style={{
-            top: pos.position.y,
-            left: pos.position.x,
+            top: pos.position.y, // set the top position of the draggable element, which gets updated by the useDrag hook
+            left: pos.position.x, // set the left position of the draggable element which gets updated by the useDrag hook
             borderRadius: shapes,
           }}
         >
