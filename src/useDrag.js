@@ -93,7 +93,7 @@ export const useDrag = ({ ref, id, callBack }) => {
       }
       const area = ([a, b, c, d]) => (c - a) * (d - b); // function to calculate the area of a rectangle
 
-      const clip = (bb, rects) => { // function to find the overlapping area between the red box and a draggable element
+      const clip = (bb, rects) => {
         if (!rects.length) {
           return [];
         }
@@ -112,11 +112,11 @@ export const useDrag = ({ ref, id, callBack }) => {
 
         return [
           [Math.max(a1, x1), Math.max(b1, y1), Math.min(a2, x2), Math.min(b2, y2)],
-          ...clip(bb, rs)
+          ...clip(bb, rs) // recursively call the clip function to get the coordinates of the overlapping area between the red box (bounding box) and the blue boxes that are overlapping with it
         ];
       };
 
-      const calc = (cr, rects) => { // function to calculate the total overlapping area between the red box and all the draggable elements
+      const calc = (cr, rects) => {
         if (!rects.length) {
           return 0;
         }
@@ -131,7 +131,7 @@ export const useDrag = ({ ref, id, callBack }) => {
         const r = [l2, m1, x2, m2];
 
         return area(rc) + [t, b, l, r].reduce(
-          (sum, x) => sum + calc(x, clip(x, rs)),
+          (sum, x) => sum + calc(x, clip(x, rs)), // recursively call the calc function to get the total overlapping area between the red box and the blue boxes
           0
         );
       };
