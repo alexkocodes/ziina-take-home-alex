@@ -71,22 +71,21 @@ export const useDrag = ({ ref, id, callBack }) => {
 
       const { top, left, width, height } = dragInfo;
 
-      const current_coords = draggableElement.getBoundingClientRect();
+      const current_coords = draggableElement.getBoundingClientRect(); // get the coordinates of the blue box that is being dragged right now
       //console.log(draggableElement.getBoundingClientRect())
-      const redBoxCoords = document.getElementById('red-box').getBoundingClientRect();
+      const redBoxCoords = document.getElementById('red-box').getBoundingClientRect(); // get the coordinates of the red box
       let rectArr = [];
       // check if the current position of the draggable element overlaps with the red box
       if (current_coords.left < redBoxCoords.right && current_coords.right > redBoxCoords.left && current_coords.top < redBoxCoords.bottom && current_coords.bottom > redBoxCoords.top) {
-        // find the overlapping coordinates between the red box and the draggable element
-        // update the coordinates of corresponding box in the boxes array
+        // store coordinates of the overlapping rectangle area between the red box and the draggable element.
         boxes_inside_red[draggableElement.id] = { x1: Math.max(current_coords.left, redBoxCoords.left), y1: Math.max(current_coords.top, redBoxCoords.top), x2: Math.min(current_coords.right, redBoxCoords.right), y2: Math.min(current_coords.bottom, redBoxCoords.bottom) };
 
-        // get the coordinates of all corresponding boxes in the boxes array
+        // get the coordinates of all corresponding boxes in the boxes array and store them in the rect array
         rectArr = Object.values(boxes_inside_red).map((box) => {
           return [box.x1, box.y1, box.x2, box.y2];
         });
-      } else {
-        // reset the coordinates of corresponding box in the boxes array
+      } else { // if the draggable element is not overlapping with the red box
+        // then reset the coordinates of corresponding box in the boxes array
         boxes_inside_red[draggableElement.id] = { x1: 0, y1: 0, x2: 0, y2: 0 };
         rectArr = Object.values(boxes_inside_red).map((box) => {
           return [box.x1, box.y1, box.x2, box.y2];
@@ -94,7 +93,7 @@ export const useDrag = ({ ref, id, callBack }) => {
       }
       const area = ([a, b, c, d]) => (c - a) * (d - b); // function to calculate the area of a rectangle
 
-      const clip = (bb, rects) => { // function to find the overlapping area between the red box and the draggable element
+      const clip = (bb, rects) => { // function to find the overlapping area between the red box and a draggable element
         if (!rects.length) {
           return [];
         }

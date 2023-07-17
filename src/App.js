@@ -24,7 +24,7 @@ export default function App() {
     positions.push({ position, handleMouseDown, id: i, ref: draggableRef }); // push the position and handleMouseDown function of each draggable element into the array
   }
 
-  // function to calculate the total visible area of the red box
+  // function to calculate the original area of the red box
   const calculateVisibleArea = () => {
     const redBox = document.getElementById('red-box');
     return redBox.offsetWidth * redBox.offsetHeight;
