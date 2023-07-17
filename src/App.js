@@ -10,9 +10,6 @@ export default function App() {
   // variable to store the total visible area of the red box
   const [visibleArea, setVisibleArea] = useState(0);
 
-  // an array to store the overlapping area of each draggable element
-  const [overlappingArea, setOverlappingArea] = useState([0, 0, 0, 0, 0]);
-
   for (let i = 0; i < 5; i++) {
     const draggableRef = useRef(null);
     const { position: position, handleMouseDown: handleMouseDown } = useDrag({
