@@ -77,20 +77,6 @@ export const useDrag = ({ ref, id, callBack }) => {
       let rectArr = [];
       // check if the current position of the draggable element overlaps with the red box
       if (current_coords.left < redBoxCoords.right && current_coords.right > redBoxCoords.left && current_coords.top < redBoxCoords.bottom && current_coords.bottom > redBoxCoords.top) {
-        // // calculate the overlapping area
-        // overlappingArea = Math.max(0, Math.min(current_coords.right, redBoxCoords.right) - Math.max(current_coords.left, redBoxCoords.left)) * Math.max(0, Math.min(current_coords.bottom, redBoxCoords.bottom) - Math.max(current_coords.top, redBoxCoords.top));
-        // // if the current element overlaps with another draggable element, reduce the overlapping area by the area of the other draggable element, and break the loop when there is overlapping to prevent double counting
-        // const blue_boxes = document.getElementsByClassName("draggable");
-        // for (let i = 0; i < blue_boxes.length; i++) {
-        //   if (blue_boxes[i].id !== draggableElement.id) {
-        //     const blueBoxCoords = blue_boxes[i].getBoundingClientRect();
-        //     if (current_coords.left < blueBoxCoords.right && current_coords.right > blueBoxCoords.left && current_coords.top < blueBoxCoords.bottom && current_coords.bottom > blueBoxCoords.top) {
-        //       overlappingArea -= Math.max(0, Math.min(current_coords.right, blueBoxCoords.right) - Math.max(current_coords.left, blueBoxCoords.left)) * Math.max(0, Math.min(current_coords.bottom, blueBoxCoords.bottom) - Math.max(current_coords.top, blueBoxCoords.top));
-        //       break;
-        //     }
-        //   }
-        // }
-
         // find the overlapping coordinates between the red box and the draggable element
         // update the coordinates of corresponding box in the boxes array
         boxes_inside_red[draggableElement.id] = { x1: Math.max(current_coords.left, redBoxCoords.left), y1: Math.max(current_coords.top, redBoxCoords.top), x2: Math.min(current_coords.right, redBoxCoords.right), y2: Math.min(current_coords.bottom, redBoxCoords.bottom) };
@@ -153,7 +139,7 @@ export const useDrag = ({ ref, id, callBack }) => {
 
       const redBoxRect = [redBoxCoords.left, redBoxCoords.top, redBoxCoords.right, redBoxCoords.bottom];
       overlappingArea = calc(redBoxRect, rectArr);
-      callBack(overlappingArea); // call the callback function to update the overlapping area of the draggable element
+      callBack(overlappingArea); // call the callBack function to update the total overlapping area of all draggable elements with the red box
       setFinalPosition({ x: left - position.x, y: top - position.y }); // update the final position of the draggable element
     },
     [isDragging, dragInfo, ref]
