@@ -17,7 +17,7 @@ export default function App() {
       id: i,
       callBack: function (e) {
         let totalOverlappingArea = e;
-        // calculate the total visible area of the red box, but only when the total overlapping area has changed
+        // update the total visible area of the red box by subtracting the overlapping area of all the blue boxes
         setVisibleArea(calculateVisibleArea() - totalOverlappingArea);
       },
     });

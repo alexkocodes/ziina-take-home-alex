@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-// create an array of 5 boxes that will be updated to store the coordinates of the overlapping area of each draggable element with the red box
+// an array of 5 boxes that will be updated to store the coordinates of the overlapping area of each draggable element with the red box
 const boxes_inside_red = {
   0: { x1: 0, y1: 0, x2: 0, y2: 0 },
   1: { x1: 0, y1: 0, x2: 0, y2: 0 },
@@ -92,9 +92,9 @@ export const useDrag = ({ ref, id, callBack }) => {
           return [box.x1, box.y1, box.x2, box.y2];
         });
       }
-      const area = ([a, b, c, d]) => (c - a) * (d - b);
+      const area = ([a, b, c, d]) => (c - a) * (d - b); // function to calculate the area of a rectangle
 
-      const clip = (bb, rects) => {
+      const clip = (bb, rects) => { // function to find the overlapping area between the red box and the draggable element
         if (!rects.length) {
           return [];
         }
@@ -117,7 +117,7 @@ export const useDrag = ({ ref, id, callBack }) => {
         ];
       };
 
-      const calc = (cr, rects) => {
+      const calc = (cr, rects) => { // function to calculate the total overlapping area between the red box and all the draggable elements
         if (!rects.length) {
           return 0;
         }
@@ -138,7 +138,7 @@ export const useDrag = ({ ref, id, callBack }) => {
       };
 
       const redBoxRect = [redBoxCoords.left, redBoxCoords.top, redBoxCoords.right, redBoxCoords.bottom];
-      overlappingArea = calc(redBoxRect, rectArr);
+      overlappingArea = calc(redBoxRect, rectArr); // calculate the total overlapping area between the red box and the draggable element
       callBack(overlappingArea); // call the callBack function to update the total overlapping area of all draggable elements with the red box
       setFinalPosition({ x: left - position.x, y: top - position.y }); // update the final position of the draggable element
     },
